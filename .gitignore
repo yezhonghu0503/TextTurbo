@@ -77,3 +77,4 @@ application-local.properties
 ### packages
 /packages/node_modules
 /src/main/resources/static
+.history
