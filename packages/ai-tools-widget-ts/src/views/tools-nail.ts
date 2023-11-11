@@ -13,3 +13,4 @@ export class MyElement extends LitElement {
         `;
     }
 }
+export default MyElement;
