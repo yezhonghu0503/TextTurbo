@@ -13,7 +13,8 @@ export class MyElement extends LitElement {
 
     render() {
         return html`
-            <div class="tt_main">
+            <div class="tt_main" draggable="true">
+                <div class="tt_logo"></div>
                 <div class="tt_menu"></div>
             </div>
         `;
@@ -21,19 +22,30 @@ export class MyElement extends LitElement {
 
     static styles = css`
         .tt_main {
-            width: 100px;
-            height: 600px;
-            background-color: white;
+            width: 60px;
+            height: 60vh;
+            background-color: #0058aa;
             position: fixed;
-            top: 30%;
+            top: 20%;
+            right: 5px;
             display: flex;
-            justify-content: center;
+            flex-flow: column;
+            justify-content: space-between;
             align-items: center;
+            z-index: 100;
+            padding: 5px 0;
+            border-radius: 5px;
+        }
+        .tt_logo {
+            width: 50px;
+            height: 40px;
+            background-color: #a9d5ff;
         }
         .tt_menu {
-            width: 80px;
-            height: 500px;
+            width: 50px;
+            height: 55vh;
             background-color: black;
+            border-radius: 5px;
         }
     `;
 }

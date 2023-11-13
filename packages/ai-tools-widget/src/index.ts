@@ -7,4 +7,4 @@ const myElement = new MyElement();
 const body = document.body;
 
 // 将 MyElement 组件挂载到 body 上
-body.appendChild(myElement);
+body.appendChild(myElement as any);
