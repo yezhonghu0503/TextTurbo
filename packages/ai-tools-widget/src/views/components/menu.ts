@@ -9,7 +9,7 @@ export class TtMain extends LitElement {
         { iconUrl: "", name: "视频" },
         { iconUrl: "", name: "音频" },
     ];
-    @property({ type: Boolean }) menuState: boolean = false;
+    @property({ type: Boolean }) menuState: boolean = true;
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
@@ -25,23 +25,31 @@ export class TtMain extends LitElement {
     render() {
         return html`
             <div class="tt_menu">
-                ${this.menuList.map((item: any) => {
-                    return html`<div @click=${this.modifMenuState} class="tt_menu_item">${item.name}</div>`;
-                })}
+                <div>
+                    ${this.menuList.map((item: any) => {
+                        return html`<div @click=${this.modifMenuState} class="tt_menu_item">${item.name}</div>`;
+                    })}
+                </div>
+                <div class="tt_vice_menu"></div>
             </div>
         `;
     }
     static styles = css`
         .tt_menu {
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: space-between;
             padding: 5px 0;
         }
         .tt_menu_item {
             width: 48px;
             height: 48px;
             text-align: center;
+        }
+        .tt_vice_menu {
+            height: 150px;
         }
     `;
 }
