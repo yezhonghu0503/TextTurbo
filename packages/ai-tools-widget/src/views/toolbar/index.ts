@@ -12,37 +12,16 @@ export class MyElement extends LitElement {
     @property({ type: String })
     version = "STARTING";
 
-    @property({ type: Object })
-    tTmainthis = this;
-
     @property({ type: Boolean, reflect: true })
     menuState: boolean = true;
 
-    getMenuState(_state: boolean, _that: any) {
-        // this.menuState = state;
-        this.menuState = !this.menuState;
-        console.log(this.menuState);
+    getMenuState = (state: boolean) => {
+        this.menuState = state;
         this.requestUpdate();
-        // console.log(this.menuState);
-        // this.requestUpdate();
-        // const _tTmain = that.shadowRoot.querySelector(".tt_main");
-        // // console.log({ _tTmain });
-        // const _toolMain = _tTmain.children[0];
-        // const _bar = _tTmain.children[1];
-
-        // if (!state) {
-        //     _toolMain.style.width = "640px";
-        //     _bar.style.width = "150px";
-        //     _tTmain.style.width = "700px";
-        // } else {
-        //     _toolMain.style.width = "0px";
-        //     _bar.style.width = "52px";
-        //     _tTmain.style.width = "54px";
-        // }
-    }
+    };
     render() {
         const mainStyles = {
-            width: this.menuState ? "54px" : "150px",
+            width: this.menuState ? "54px" : "750px",
         };
         return html`
             <div class="tt_main" style=${styleMap(mainStyles)} draggable="true">
@@ -51,8 +30,7 @@ export class MyElement extends LitElement {
                     <div class="tt_logo">
                         <img style="width:45px" src="https://blog.al2p.xyz/upload/logo-mgia.png" />
                     </div>
-                    <tt-menu .onMenu=${this.getMenuState} .tTmainthis=${this.tTmainthis} class="tt_menu"></tt-menu>
-                    <button @click=${this.getMenuState}>getMenuState</button>
+                    <tt-menu .onMenu=${this.getMenuState} class="tt_menu"></tt-menu>
                 </div>
             </div>
         `;
@@ -74,7 +52,7 @@ export class MyElement extends LitElement {
             backdrop-filter: blur(10px);
             overflow: hidden; /* 为了确保子元素不溢出 */
             padding: 0 2px 2px 0;
-            transition: width 0.5s ease-in-out;
+            transition: width 0.5s cubic-bezier(0.04, 0.93, 0.53, 1);
         }
         .tt_main_close {
             width: 54px;

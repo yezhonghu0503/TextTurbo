@@ -16,11 +16,10 @@ export class TtMain extends LitElement {
     }
 
     @property({ type: Object, attribute: false }) onMenu: any;
-    @property({ type: Object }) tTmainthis: any;
     @property({ type: Function })
     modifMenuState() {
         this.menuState = !this.menuState;
-        this.onMenu(this.menuState, this.tTmainthis);
+        this.onMenu(this.menuState);
     }
 
     render() {
