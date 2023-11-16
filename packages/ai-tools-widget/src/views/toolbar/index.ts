@@ -1,6 +1,6 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
-// import { styleMap } from "lit/directives/style-map.js";
+import { styleMap } from "lit/directives/style-map.js";
 import "../components/menu";
 @customElement("my-element")
 export class MyElement extends LitElement {
@@ -16,36 +16,43 @@ export class MyElement extends LitElement {
     tTmainthis = this;
 
     @property({ type: Boolean, reflect: true })
-    menuState: boolean = false;
+    menuState: boolean = true;
 
-    getMenuState(state: boolean, that: any) {
-        this.menuState = state;
+    getMenuState(_state: boolean, _that: any) {
+        // this.menuState = state;
+        this.menuState = !this.menuState;
+        console.log(this.menuState);
+        this.requestUpdate();
         // console.log(this.menuState);
         // this.requestUpdate();
-        const _tTmain = that.shadowRoot.querySelector(".tt_main");
-        // console.log({ _tTmain });
-        const _toolMain = _tTmain.children[0];
-        const _bar = _tTmain.children[1];
+        // const _tTmain = that.shadowRoot.querySelector(".tt_main");
+        // // console.log({ _tTmain });
+        // const _toolMain = _tTmain.children[0];
+        // const _bar = _tTmain.children[1];
 
-        if (!state) {
-            _toolMain.style.width = "640px";
-            _bar.style.width = "150px";
-            _tTmain.style.width = "700px";
-        } else {
-            _toolMain.style.width = "0px";
-            _bar.style.width = "52px";
-            _tTmain.style.width = "54px";
-        }
+        // if (!state) {
+        //     _toolMain.style.width = "640px";
+        //     _bar.style.width = "150px";
+        //     _tTmain.style.width = "700px";
+        // } else {
+        //     _toolMain.style.width = "0px";
+        //     _bar.style.width = "52px";
+        //     _tTmain.style.width = "54px";
+        // }
     }
     render() {
+        const mainStyles = {
+            width: this.menuState ? "54px" : "150px",
+        };
         return html`
-            <div class="tt_main" draggable="true">
+            <div class="tt_main" style=${styleMap(mainStyles)} draggable="true">
                 <div class="tt_tool_main"></div>
                 <div class="tt_bar">
                     <div class="tt_logo">
                         <img style="width:45px" src="https://blog.al2p.xyz/upload/logo-mgia.png" />
                     </div>
                     <tt-menu .onMenu=${this.getMenuState} .tTmainthis=${this.tTmainthis} class="tt_menu"></tt-menu>
+                    <button @click=${this.getMenuState}>getMenuState</button>
                 </div>
             </div>
         `;
