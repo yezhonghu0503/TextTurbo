@@ -34,31 +34,32 @@ export class MyElement extends LitElement {
         };
         const logoStyles = {
             width: this.menuState ? "45px" : "150px",
+            background: "white",
         };
+        // src=${this.menuState
+        //     ? "https://blog.al2p.xyz/upload/logo-mgia.png"
+        //     : "https://blog.al2p.xyz/upload/ttlogo.png"}
         return html`
             <div class="tt_main" style=${styleMap(mainStyles)} draggable="true">
                 <div class="tt_tool_main" style=${styleMap(toolMainStyles)}>
                     <div class="tt_tool_content" style=${styleMap(toolContentMainStyles)}></div>
                 </div>
+
                 <div class="tt_bar" style=${styleMap(barStyles)}>
                     <div class="tt_logo">
-                        <img
-                            style=${styleMap(logoStyles)}
-                            src=${this.menuState
-                                ? "https://blog.al2p.xyz/upload/logo-mgia.png"
-                                : "https://blog.al2p.xyz/upload/ttlogo.png"}
-                        />
+                        <img style=${styleMap(logoStyles)} min-width="45px" />
                     </div>
                     <tt-menu .onMenu=${this.getMenuState} class="tt_menu"></tt-menu>
                 </div>
             </div>
+            <div>...</div>
         `;
     }
 
     static styles = css`
         .tt_main {
             width: 54px;
-            height: 70vh;
+            height: 50vh;
             background-color: rgba(255, 255, 255, 0.4); /* 半透明黑色作为背景 */
             position: fixed;
             top: 10%;
@@ -91,7 +92,7 @@ export class MyElement extends LitElement {
         }
         .tt_menu {
             width: 100%;
-            height: 66vh;
+            height: 46vh;
             background: rgb(22, 38, 59);
             background: linear-gradient(
                 180deg,
@@ -106,14 +107,14 @@ export class MyElement extends LitElement {
         }
         .tt_tool_main {
             /* width: 640px; */
-            height: 70vh;
+            height: 50vh;
             display: flex;
             justify-content: center;
             align-items: flex-end;
             transition: width 0.5s cubic-bezier(0.04, 0.93, 0.53, 1);
         }
         .tt_tool_content {
-            height: 68vh;
+            height: 48vh;
             border-radius: 10px;
             background: linear-gradient(
                 180deg,
