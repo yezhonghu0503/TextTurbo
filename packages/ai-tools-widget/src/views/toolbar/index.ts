@@ -34,20 +34,23 @@ export class MyElement extends LitElement {
         };
         const logoStyles = {
             width: this.menuState ? "45px" : "150px",
-            background: "white",
         };
-        // src=${this.menuState
-        //     ? "https://blog.al2p.xyz/upload/logo-mgia.png"
-        //     : "https://blog.al2p.xyz/upload/ttlogo.png"}
+
         return html`
-            <div class="tt_main" style=${styleMap(mainStyles)} draggable="true">
+            <div class="tt_main" style=${styleMap(mainStyles)}>
                 <div class="tt_tool_main" style=${styleMap(toolMainStyles)}>
                     <div class="tt_tool_content" style=${styleMap(toolContentMainStyles)}></div>
                 </div>
 
                 <div class="tt_bar" style=${styleMap(barStyles)}>
                     <div class="tt_logo">
-                        <img style=${styleMap(logoStyles)} min-width="45px" />
+                        <img
+                            style=${styleMap(logoStyles)}
+                            src=${this.menuState
+                                ? "https://blog.al2p.xyz/upload/logo-mgia.png"
+                                : "https://blog.al2p.xyz/upload/ttlogo.png"}
+                            min-width="45px"
+                        />
                     </div>
                     <tt-menu .onMenu=${this.getMenuState} class="tt_menu"></tt-menu>
                 </div>

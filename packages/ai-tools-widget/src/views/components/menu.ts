@@ -5,12 +5,12 @@ import { styleMap } from "lit/directives/style-map.js";
 export class TtMain extends LitElement {
     @property({ type: Array })
     menuList: any = [
-        { iconUrl: "", name: "预览" },
-        { iconUrl: "", name: "视频" },
-        { iconUrl: "", name: "音频" },
-        { iconUrl: "", name: "图像" },
-        { iconUrl: "", name: "服务" },
-        { iconUrl: "", name: "服务" },
+        { iconUrl: "/upload/openai.png", name: "" },
+        { iconUrl: "/upload/send.png", name: "" },
+        { iconUrl: "/upload/send.png", name: "" },
+        { iconUrl: "/upload/send.png", name: "" },
+        { iconUrl: "/upload/send.png", name: "" },
+        { iconUrl: "/upload/send.png", name: "" },
     ];
     @property({ type: Boolean }) menuState: boolean = true;
     constructor() {
@@ -37,7 +37,9 @@ export class TtMain extends LitElement {
                 <div style=${styleMap(ttViceMenu)} class="tt_vice_menu"></div>
                 <div style=${styleMap(ttMainMenu)} class="tt_main_menu">
                     ${this.menuList.map((item: any) => {
-                        return html`<div @click=${this.modifMenuState} class="tt_menu_item">${item.name}</div>`;
+                        return html`<div @click=${this.modifMenuState} class="tt_menu_item">
+                            <img style="width:25px" src=https://blog.al2p.xyz${item.iconUrl} />
+                        </div>`;
                     })}
                 </div>
             </div>
@@ -52,10 +54,11 @@ export class TtMain extends LitElement {
             transition: all 0.5s cubic-bezier(0.04, 0.93, 0.53, 1);
         }
         .tt_menu_item {
-            width: 40px;
-            height: 40px;
-            text-align: center;
-            line-height: 40px;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border-radius: 10px;
             margin-top: 5px;
             background-color: #0058aa;
@@ -64,10 +67,14 @@ export class TtMain extends LitElement {
         .tt_main_menu {
             width: 100%;
             display: flex;
-            justify-content: space-around;
-            align-items: center;
             flex-wrap: wrap;
         }
+
+        .tt_main_menu > * {
+            flex: 0 1 calc(33.333% - 10px); /* 10px 是元素之间的间距 */
+            margin: 5px; /* 设置元素间距 */
+        }
+
         .tt_vice_menu {
             width: 100%;
             transition: all 0.5s cubic-bezier(0.04, 0.93, 0.53, 1);
