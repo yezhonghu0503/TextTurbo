@@ -15,7 +15,7 @@ export default ({ mode }: { mode: string }) => {
                 // 自定义 Rollup 配置
                 // 例如，配置输出多个入口文件
                 // input: {
-                //     main: "src/main.ts",
+                //     main: "src/index.ts",
                 //     // other: "src/other.js",
                 // },
             },

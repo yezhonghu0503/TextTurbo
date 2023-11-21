@@ -1,7 +1,6 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { styleMap } from "lit/directives/style-map.js";
-// import anime from "animejs";
+import anime from "animejs";
 
 import "../components/menu";
 @customElement("my-element")
@@ -19,35 +18,44 @@ export class MyElement extends LitElement {
 
     getMenuState = (state: boolean) => {
         this.menuState = state;
+        anime({
+            targets: this.shadowRoot?.querySelector(".tt_main"),
+            width: state ? "54px" : "750px",
+        });
+        anime({
+            targets: this.shadowRoot?.querySelector(".tt_bar"),
+            width: state ? "52px" : "150px",
+        });
+        anime({
+            targets: this.shadowRoot?.querySelector(".tt_tool_main"),
+            width: state ? "0" : "600px",
+        });
+        anime({
+            targets: this.shadowRoot?.querySelector(".tt_tool_content"),
+            width: state ? "0" : "596px",
+        });
+        anime({
+            targets: this.shadowRoot?.querySelector(".tt_logo_img"),
+            width: state ? "45px" : "150px",
+        });
         this.requestUpdate();
     };
     render() {
-        const mainStyles = {
-            width: this.menuState ? "54px" : "750px",
-        };
-        const barStyles = {
-            width: this.menuState ? "52px" : "150px",
-        };
-        const toolMainStyles = {
-            width: this.menuState ? "0" : "600px",
-        };
-        const toolContentMainStyles = {
-            width: this.menuState ? "0" : "596px",
-        };
-        const logoStyles = {
-            width: this.menuState ? "45px" : "150px",
-        };
+        console.log(anime({}));
+        // const mainStyles = {
+        //     width: this.menuState ? "54px" : "750px",
+        // };
 
         return html`
-            <div class="tt_main" style=${styleMap(mainStyles)}>
-                <div class="tt_tool_main" style=${styleMap(toolMainStyles)}>
-                    <div class="tt_tool_content" style=${styleMap(toolContentMainStyles)}></div>
+            <div class="tt_main">
+                <div class="tt_tool_main">
+                    <div class="tt_tool_content"></div>
                 </div>
 
-                <div class="tt_bar" style=${styleMap(barStyles)}>
+                <div class="tt_bar">
                     <div class="tt_logo">
                         <img
-                            style=${styleMap(logoStyles)}
+                            class="tt_logo_img"
                             src=${this.menuState
                                 ? "https://blog.al2p.xyz/upload/logo-mgia.png"
                                 : "https://blog.al2p.xyz/upload/ttlogo.png"}
@@ -77,10 +85,11 @@ export class MyElement extends LitElement {
             backdrop-filter: blur(10px);
             overflow: hidden; /* 为了确保子元素不溢出 */
             padding: 0 2px 2px 0;
-            transition: width 0.5s cubic-bezier(0.04, 0.93, 0.53, 1);
+            /* transition: width 0.5s cubic-bezier(0.04, 0.93, 0.53, 1); */
         }
 
         .tt_bar {
+            width: 52px;
             height: 100%;
             display: flex;
             flex-flow: column;
@@ -130,6 +139,9 @@ export class MyElement extends LitElement {
                 rgba(6, 32, 47, 1) 74%
             );
             transition: width 0.5s cubic-bezier(0.04, 0.93, 0.53, 1);
+        }
+        .tt_logo_img {
+            width: 45px;
         }
     `;
 }
