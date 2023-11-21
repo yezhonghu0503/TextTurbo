@@ -1,6 +1,8 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { styleMap } from "lit/directives/style-map.js";
+// import anime from "animejs";
+
 import "../components/menu";
 @customElement("my-element")
 export class MyElement extends LitElement {
