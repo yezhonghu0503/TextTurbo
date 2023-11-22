@@ -10,28 +10,48 @@
             background: rgb(49, 49, 49);
         }
 
-        .test {
-            width: 200px;
-            height: 200px;
+        .test1,
+        .test2,
+        .test3 {
+            width: 50px;
+            height: 50px;
             background: blue;
+            margin-top: 10px;
         }
     </style>
 
-    <script src="http://localhost:8000/main.js" async></script>
-    <!-- <script src="../node_modules/animejs/lib/anime.min.js"></script>
+    <!-- <script src="http://localhost:8000/main.js" async></script> -->
+    <script src="../node_modules/animejs/lib/anime.min.js"></script>
     <script>
+        let state = true;
         function btn() {
+            state = !state;
+            console.log(state)
             anime({
-                targets: '.test',
-                width: '400px'
+                targets: '.test1',
+                translateY: function (el, i, l) {
+                    // 计算垂直位移，这里乘以一个常数（比如50），可以根据需求调整
+                    return state ? 0 : 150 * (l - i);
+                },
+                scale: function (el, i, l) {
+                    return state ? 1 : (l - i) + 0.25;
+                },
+                rotate: function () { return state ? 0 : anime.random(-360, 360); },
+                borderRadius: function () { return state ? 0 : ['50%', anime.random(10, 35) + '%']; },
+                duration: function () { return anime.random(1200, 1800); },
+                delay: function () { return anime.random(0, 400); },
             });
         }
-    </script> -->
+    </script>
 </head>
 
 <body>
-    <!-- <div class="test"></div>
-    <button onclick="btn()">test</button> -->
+    <div class="testf" style="height:300px;padding-left: 300px;padding-top: 200px;">
+        <div onclick="btn()" class="test1" data-x="300"></div>
+        <div class="test1" data-x="200"></div>
+        <div class="test1" data-x="100"></div>
+    </div>
+    <!-- <button onclick="btn()">test</button> -->
 </body>
 
 </html>

@@ -22,6 +22,7 @@ export class MyElement extends LitElement {
             targets: this.shadowRoot?.querySelector(".tt_main"),
             width: state ? "54px" : "750px",
             easing: "easeInOutExpo",
+            delay: state ? 200 : 0,
         });
         anime({
             targets: this.shadowRoot?.querySelector(".tt_bar"),
@@ -32,17 +33,19 @@ export class MyElement extends LitElement {
             targets: this.shadowRoot?.querySelector(".tt_tool_main"),
             width: state ? "0" : "600px",
             easing: "easeInOutExpo",
+            delay: state ? 0 : 200,
         });
         anime({
             targets: this.shadowRoot?.querySelector(".tt_tool_content"),
             width: state ? "0" : "596px",
             easing: "easeInOutExpo",
+            delay: state ? 0 : 200,
         });
-        anime({
-            targets: this.shadowRoot?.querySelector(".tt_logo_img"),
-            width: state ? "45px" : "150px",
-            easing: "easeInOutExpo",
-        });
+        // anime({
+        //     targets: this.shadowRoot?.querySelector(".tt_logo_img"),
+        //     width: state ? "45px" : "150px",
+        //     easing: "easeInOutExpo",
+        // });
         this.requestUpdate();
     };
     render() {
@@ -125,7 +128,6 @@ export class MyElement extends LitElement {
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            transition: width 0.5s cubic-bezier(0.04, 0.93, 0.53, 1);
         }
         .tt_tool_content {
             height: 48vh;
@@ -138,7 +140,6 @@ export class MyElement extends LitElement {
                 rgba(15, 34, 52, 1) 55%,
                 rgba(6, 32, 47, 1) 74%
             );
-            transition: width 0.5s cubic-bezier(0.04, 0.93, 0.53, 1);
         }
         .tt_logo_img {
             width: 45px;
