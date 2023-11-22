@@ -21,31 +21,31 @@ export class MyElement extends LitElement {
         anime({
             targets: this.shadowRoot?.querySelector(".tt_main"),
             width: state ? "54px" : "750px",
+            easing: "easeInOutExpo",
         });
         anime({
             targets: this.shadowRoot?.querySelector(".tt_bar"),
             width: state ? "52px" : "150px",
+            easing: "easeInOutExpo",
         });
         anime({
             targets: this.shadowRoot?.querySelector(".tt_tool_main"),
             width: state ? "0" : "600px",
+            easing: "easeInOutExpo",
         });
         anime({
             targets: this.shadowRoot?.querySelector(".tt_tool_content"),
             width: state ? "0" : "596px",
+            easing: "easeInOutExpo",
         });
         anime({
             targets: this.shadowRoot?.querySelector(".tt_logo_img"),
             width: state ? "45px" : "150px",
+            easing: "easeInOutExpo",
         });
         this.requestUpdate();
     };
     render() {
-        console.log(anime({}));
-        // const mainStyles = {
-        //     width: this.menuState ? "54px" : "750px",
-        // };
-
         return html`
             <div class="tt_main">
                 <div class="tt_tool_main">
