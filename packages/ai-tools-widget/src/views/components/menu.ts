@@ -24,19 +24,20 @@ export class TtMain extends LitElement {
     }
     menuAnime(state: boolean) {
         anime({
-            targets: this.shadowRoot?.querySelectorAll(".tt_menu_item"),
+            targets: Array.from(this.shadowRoot?.querySelectorAll(".tt_menu_item") as any).slice(0, 3),
             translateY: function (_el: any, i: any, l: any) {
-                // 计算垂直位移，这里乘以一个常数（比如50），可以根据需求调整
-                return state ? 0 : 150 * (l - i);
+                const baseDistance = 120; // 基础的位移距离
+                const additionalSpacing = 30; // 附加的间距
+                return state ? 0 : baseDistance * (l - i) + additionalSpacing * i;
             },
             scale: function (_el: any, i: any, l: any) {
-                return state ? 1 : l - i + 0.25;
+                return state ? 1 : (l - i) * 0.9;
             },
             rotate: function () {
                 return state ? 0 : anime.random(-360, 360);
             },
             borderRadius: function () {
-                return state ? 0 : ["50%", anime.random(10, 35) + "%"];
+                return state ? "10px" : ["50%", anime.random(10, 35) + "%"];
             },
             duration: function () {
                 return anime.random(1200, 1800);
@@ -87,7 +88,8 @@ export class TtMain extends LitElement {
         .tt_main_menu {
             width: 100%;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* .tt_main_menu > * {
@@ -97,7 +99,6 @@ export class TtMain extends LitElement {
 
         .tt_vice_menu {
             width: 100%;
-            transition: all 0.5s cubic-bezier(0.04, 0.93, 0.53, 1);
         }
     `;
 }
