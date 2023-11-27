@@ -1,4 +1,4 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html, css, PropertyValueMap } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 @customElement("tt-chat")
@@ -7,7 +7,13 @@ export class TtChat extends LitElement {
         super();
         this.attachShadow({ mode: "open" });
     }
-    @property()
+    @property({ type: Boolean }) menuState: any;
+
+    protected update(changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+        if (changedProperties.has("menuState")) {
+            console.log(this.menuState);
+        }
+    }
     render() {
         return html`
             <div class="tt_chat">
@@ -25,7 +31,7 @@ export class TtChat extends LitElement {
     }
     static styles = css`
         .tt_chat {
-            width: 100%;
+            width: 0;
             height: 100%;
         }
         .tt_chat_content {
@@ -33,7 +39,7 @@ export class TtChat extends LitElement {
             height: 85%;
         }
         .tt_chat_textarea {
-            width: 560px;
+            width: 100%;
             height: 52px;
             display: flex;
             color: white;

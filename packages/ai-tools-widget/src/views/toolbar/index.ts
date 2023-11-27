@@ -1,4 +1,4 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html, css, PropertyValueMap } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import anime from "animejs";
 
@@ -54,7 +54,7 @@ export class MyElement extends LitElement {
             <div class="tt_main">
                 <div class="tt_tool_main">
                     <div class="tt_tool_content">
-                        <tt-chat></tt-chat>
+                        <tt-chat .menuState=${this.menuState}></tt-chat>
                     </div>
                 </div>
 
