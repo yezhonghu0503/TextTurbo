@@ -3,6 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import anime from "animejs";
 
 import "../components/menu";
+import "../chat/index";
 @customElement("my-element")
 export class MyElement extends LitElement {
     constructor() {
@@ -41,18 +42,20 @@ export class MyElement extends LitElement {
             easing: "easeInOutExpo",
             delay: state ? 0 : 200,
         });
-        // anime({
-        //     targets: this.shadowRoot?.querySelector(".tt_logo_img"),
-        //     width: state ? "45px" : "150px",
-        //     easing: "easeInOutExpo",
-        // });
+        anime({
+            targets: this.shadowRoot?.querySelector(".tt_logo_img"),
+            width: state ? "45px" : "150px",
+            easing: "easeInOutExpo",
+        });
         this.requestUpdate();
     };
     render() {
         return html`
             <div class="tt_main">
                 <div class="tt_tool_main">
-                    <div class="tt_tool_content"></div>
+                    <div class="tt_tool_content">
+                        <tt-chat></tt-chat>
+                    </div>
                 </div>
 
                 <div class="tt_bar">

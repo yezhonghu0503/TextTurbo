@@ -5,9 +5,10 @@ import anime from "animejs";
 export class TtMain extends LitElement {
     @property({ type: Array })
     menuList: any = [
-        { iconUrl: "/upload/openai.png", name: "" },
-        { iconUrl: "/upload/send.png", name: "" },
-        { iconUrl: "/upload/send.png", name: "" },
+        { iconUrl: "/upload/openai.png", name: "", backgroudColor: "#F39800", dataX: 35 },
+        { iconUrl: "/upload/send.png", name: "", backgroudColor: "#2A52BE", dataX: -35 },
+        { iconUrl: "/upload/send.png", name: "", backgroudColor: "#C0EBD7", dataX: 35 },
+        { iconUrl: "/upload/send.png", name: "", backgroudColor: "#C0EBD7", dataX: -35 },
     ];
     @property({ type: Boolean }) menuState: boolean = true;
     constructor() {
@@ -23,15 +24,21 @@ export class TtMain extends LitElement {
         this.menuAnime(this.menuState);
     }
     menuAnime(state: boolean) {
+        // this.menuList.forEach((element: any) => {
+        //     element.dataX = 0;
+        // });
         anime({
-            targets: Array.from(this.shadowRoot?.querySelectorAll(".tt_menu_item") as any).slice(0, 3),
+            targets: Array.from(this.shadowRoot?.querySelectorAll(".tt_menu_item") as any).slice(0, 4),
             translateY: function (_el: any, i: any, l: any) {
-                const baseDistance = 120; // 基础的位移距离
-                const additionalSpacing = 30; // 附加的间距
-                return state ? 0 : baseDistance * (l - i) + additionalSpacing * i;
+                const baseDistance = 10; // 基础的位移距离
+                const additionalSpacing = 4; // 附加的间距
+                return state ? 0 : `${baseDistance * (l - i) + additionalSpacing * i}vh`;
+            },
+            translateX: function (el: any) {
+                return el.getAttribute("data-x");
             },
             scale: function (_el: any, i: any, l: any) {
-                return state ? 1 : (l - i) * 0.9;
+                return state ? 1 : (l - i) * 0.4;
             },
             rotate: function () {
                 return state ? 0 : anime.random(-360, 360);
@@ -60,7 +67,12 @@ export class TtMain extends LitElement {
                 <div class="tt_vice_menu"></div>
                 <div class="tt_main_menu">
                     ${this.menuList.map((item: any) => {
-                        return html`<div @click=${this.modifMenuState} data-x="0" class="tt_menu_item">
+                        return html`<div
+                            @click=${this.modifMenuState}
+                            style="background:${item.backgroudColor}"
+                            data-x=${this.menuState ? item.dataX : 0}
+                            class="tt_menu_item"
+                        >
                             <img style="width:25px" src=https://blog.al2p.xyz${item.iconUrl} />
                         </div>`;
                     })}
@@ -83,7 +95,6 @@ export class TtMain extends LitElement {
             align-items: center;
             border-radius: 10px;
             margin-top: 5px;
-            background-color: #0058aa;
         }
         .tt_main_menu {
             width: 100%;
