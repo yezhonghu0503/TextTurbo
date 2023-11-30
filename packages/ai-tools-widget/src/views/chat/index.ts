@@ -1,18 +1,17 @@
 import { LitElement, html, css, PropertyValueMap } from "lit";
 import { customElement, property } from "lit/decorators.js";
-
+import { MenuStateController } from "../../controller/MenuStateController";
 @customElement("tt-chat")
 export class TtChat extends LitElement {
+    private menuStateController = new MenuStateController(this);
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
     }
     @property({ type: Boolean }) menuState: any;
 
-    protected update(changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-        if (changedProperties.has("menuState")) {
-            console.log(this.menuState);
-        }
+    protected update(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+        console.log(this.menuStateController.getMenuState());
     }
     render() {
         return html`

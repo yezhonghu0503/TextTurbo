@@ -1,8 +1,11 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import anime from "animejs";
+import { MenuStateController } from "../../controller/MenuStateController";
 @customElement("tt-menu")
 export class TtMain extends LitElement {
+    private menuStateController = new MenuStateController(this);
+
     @property({ type: Array })
     menuList: any = [
         { iconUrl: "/upload/openai.png", name: "", backgroudColor: "#F39800", dataX: 35 },
@@ -22,6 +25,8 @@ export class TtMain extends LitElement {
         this.menuState = !this.menuState;
         this.onMenu(this.menuState);
         this.menuAnime(this.menuState);
+        this.menuStateController.changeMenuState();
+        // console.log(this.menuStateController.getMenuState());
     }
     menuAnime(state: boolean) {
         // this.menuList.forEach((element: any) => {
