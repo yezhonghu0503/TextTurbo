@@ -1,7 +1,9 @@
 import { ReactiveController, ReactiveControllerHost } from "lit";
+import { state } from "lit/decorators.js";
 
 export class MenuStateController implements ReactiveController {
     host: ReactiveControllerHost;
+    @state()
     private menuState: boolean = false;
     constructor(host: ReactiveControllerHost) {
         (this.host = host).addController(this);
