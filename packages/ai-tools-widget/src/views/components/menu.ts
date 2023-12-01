@@ -26,8 +26,11 @@ export class TtMain extends LitElement {
         this.onMenu(this.menuState);
         this.menuAnime(this.menuState);
         this.menuStateController.changeMenuState();
-        // console.log(this.menuStateController.getMenuState());
+        // console.log(this.menuStateController.menuState);
     }
+    // protected update(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    //     console.log(this.menuStateController.menuState);
+    // }
     menuAnime(state: boolean) {
         // this.menuList.forEach((element: any) => {
         //     element.dataX = 0;
@@ -69,6 +72,7 @@ export class TtMain extends LitElement {
         // };
         return html`
             <div class="tt_menu">
+                <div>${this.menuStateController.menuState}</div>
                 <div class="tt_vice_menu"></div>
                 <div class="tt_main_menu">
                     ${this.menuList.map((item: any) => {
