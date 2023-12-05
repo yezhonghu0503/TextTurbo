@@ -1,9 +1,23 @@
-// import { observable } from "mobx";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-// class GeneralStore {
-//     // 菜单状态=> true:关闭 false:打开
-//     @observable menuState: boolean = false;
-// }
+const menuStateSlice = createSlice({
+    name: "test",
+    initialState: {
+        value: false,
+    },
+    reducers: {
+        openMenu: (state) => {
+            state.value = true;
+        },
+        closeMenu: (state) => {
+            state.value = false;
+        },
+    },
+});
+export const { openMenu, closeMenu } = menuStateSlice.actions;
 
-// let generalStore = new GeneralStore();
-// export default generalStore;
+export const store = configureStore({
+    reducer: {
+        menuState: menuStateSlice.reducer,
+    },
+});

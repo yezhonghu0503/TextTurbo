@@ -1,6 +1,8 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import anime from "animejs";
+import { store } from "../../store";
+
 @customElement("tt-menu")
 export class TtMain extends LitElement {
     @property({ type: Array })
@@ -22,6 +24,7 @@ export class TtMain extends LitElement {
         this.menuState = !this.menuState;
         this.onMenu(this.menuState);
         this.menuAnime(this.menuState);
+        console.log(store);
         // console.log(this.menuStateController.menuState);
     }
     // protected update(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
