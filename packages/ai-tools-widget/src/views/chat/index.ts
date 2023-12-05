@@ -1,9 +1,7 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { MenuStateController } from "../../controller/MenuStateController";
 @customElement("tt-chat")
 export class TtChat extends LitElement {
-    private menuStateController = new MenuStateController(this);
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
@@ -17,7 +15,7 @@ export class TtChat extends LitElement {
         return html`
             <div class="tt_chat">
                 <div>123</div>
-                <div class="tt_chat_content">${this.menuStateController.menuState.toString()}</div>
+                <div class="tt_chat_content"></div>
                 <div style="width: auto; display: flex; justify-content: center;padding:0 ">
                     <div class="tt_chat_textarea">
                         <textarea name="" id="" cols="30" rows="2"></textarea>
