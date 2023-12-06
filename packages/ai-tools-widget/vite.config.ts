@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-
+import strip from "@rollup/plugin-strip";
 const pluginEntryName = "PluginStarter";
 
 // https://vitejs.dev/config/
@@ -18,6 +18,13 @@ export default ({ mode }: { mode: string }) => {
                 //     main: "src/index.ts",
                 //     // other: "src/other.js",
                 // },
+                plugins: [
+                    // 添加 Rollup 插件以移除副作用
+                    strip({
+                        include: "./node_modules/immer/src/plugins/*.ts", // 根据你的项目结构配置
+                        strip: /if \(process\.env\.NODE_ENV !== "production"\) {[\s\S]*?}/,
+                    }),
+                ],
             },
             lib: {
                 entry: "src/index.ts",
