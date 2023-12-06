@@ -1,7 +1,7 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import anime from "animejs";
-import { store } from "../../store";
+import { store, openMenu, closeMenu } from "../../store";
 
 @customElement("tt-menu")
 export class TtMain extends LitElement {
@@ -24,7 +24,9 @@ export class TtMain extends LitElement {
         this.menuState = !this.menuState;
         this.onMenu(this.menuState);
         this.menuAnime(this.menuState);
-        console.log(store);
+        store.getState().menuState.value ? store.dispatch(closeMenu()) : store.dispatch(openMenu());
+        console.log(store.getState());
+        // console.log(store.getState());
         // console.log(this.menuStateController.menuState);
     }
     // protected update(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {

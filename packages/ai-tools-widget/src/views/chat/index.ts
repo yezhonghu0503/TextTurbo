@@ -1,5 +1,6 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html, css, PropertyValueMap } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { store } from "../../store";
 @customElement("tt-chat")
 export class TtChat extends LitElement {
     constructor() {
@@ -8,9 +9,9 @@ export class TtChat extends LitElement {
     }
     @property({ type: Boolean }) menuState: any;
 
-    // protected update(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    //     console.log(this.menuStateController.menuState);
-    // }
+    protected update(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+        console.log(store.getState());
+    }
     render() {
         return html`
             <div class="tt_chat">
