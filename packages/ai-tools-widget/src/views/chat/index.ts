@@ -1,5 +1,5 @@
-import { LitElement, html, css, PropertyValueMap } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { LitElement, html, css } from "lit";
+import { customElement, state } from "lit/decorators.js";
 import { store } from "../../store";
 @customElement("tt-chat")
 export class TtChat extends LitElement {
@@ -7,15 +7,22 @@ export class TtChat extends LitElement {
         super();
         this.attachShadow({ mode: "open" });
     }
-    @property({ type: Boolean }) menuState: any;
+    @state()
+    menuState?: any;
 
-    protected update(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-        console.log(store.getState());
+    firstUpdated() {
+        // 订阅Redux存储的更改
+        store.subscribe(() => this.updateMenuState(store.getState()));
+    }
+    updateMenuState(state: any) {
+        this.menuState = state;
+        console.log(this.menuState);
+        this.requestUpdate();
     }
     render() {
         return html`
             <div class="tt_chat">
-                <div>123</div>
+                <div>${this.menuState?.value}</div>
                 <div class="tt_chat_content"></div>
                 <div style="width: auto; display: flex; justify-content: center;padding:0 ">
                     <div class="tt_chat_textarea">

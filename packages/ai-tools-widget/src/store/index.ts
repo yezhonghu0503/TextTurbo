@@ -6,10 +6,10 @@ const menuStateSlice = createSlice({
         value: false,
     },
     reducers: {
-        openMenu: (state) => {
+        openMenu: (state: any) => {
             state.value = true;
         },
-        closeMenu: (state) => {
+        closeMenu: (state: any) => {
             state.value = false;
         },
     },

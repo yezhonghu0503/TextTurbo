@@ -25,7 +25,7 @@ export class TtMain extends LitElement {
         this.onMenu(this.menuState);
         this.menuAnime(this.menuState);
         store.getState().menuState.value ? store.dispatch(closeMenu()) : store.dispatch(openMenu());
-        console.log(store.getState());
+        this.requestUpdate();
         // console.log(store.getState());
         // console.log(this.menuStateController.menuState);
     }
