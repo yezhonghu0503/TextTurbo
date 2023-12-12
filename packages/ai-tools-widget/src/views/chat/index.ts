@@ -1,5 +1,6 @@
 import { LitElement, html, css } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { customElement } from "lit/decorators.js";
+import anime from "animejs";
 import { store } from "../../store";
 @customElement("tt-chat")
 export class TtChat extends LitElement {
@@ -7,24 +8,26 @@ export class TtChat extends LitElement {
         super();
         this.attachShadow({ mode: "open" });
     }
-    @state()
-    menuState?: any;
 
     firstUpdated() {
         // 订阅Redux存储的更改
         store.subscribe(() => this.updateMenuState(store.getState()));
     }
     updateMenuState(state: any) {
-        this.menuState = state;
-        console.log(this.menuState);
+        anime({
+            targets: this.shadowRoot?.querySelector(".tt_chat"),
+            width: state ? "100%" : "0",
+            easing: "easeInOutExpo",
+        });
         this.requestUpdate();
     }
     render() {
         return html`
             <div class="tt_chat">
-                <div>${this.menuState?.value}</div>
-                <div class="tt_chat_content"></div>
-                <div style="width: auto; display: flex; justify-content: center;padding:0 ">
+                <div class="tt_chat_content">
+                    <div>12333</div>
+                </div>
+                <div style="width: auto; display: flex; justify-content: center;padding:0 20px">
                     <div class="tt_chat_textarea">
                         <textarea name="" id="" cols="30" rows="2"></textarea>
                         <div class="tt_chat_send">
